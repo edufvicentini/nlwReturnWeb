@@ -3,12 +3,13 @@ import { Camera, Trash } from "phosphor-react";
 import { useState } from "react";
 import { Loading } from "./Loading";
 
-interface ScreenshotButtonProps {
+interface ScreenshotButtonProps{
   screenshot: string;
   onScreenshotTook: (screenshot: string | null) => void
+  isDisabled: boolean;
 }
 
-export function ScreenshotButton({ onScreenshotTook, screenshot }: ScreenshotButtonProps) {
+export function ScreenshotButton({ onScreenshotTook, screenshot, isDisabled }: ScreenshotButtonProps) {
   const [isTakingScreenshot, setIsTakingScreenshot] = useState(false)
   async function handleTakeScreenshot() {
     setIsTakingScreenshot(true);
@@ -35,6 +36,7 @@ export function ScreenshotButton({ onScreenshotTook, screenshot }: ScreenshotBut
           backgroundPosition: 'right bottom',
           backgroundSize: 180
         }}
+        disabled={isDisabled}
       >
         <Trash weight="fill"/>
       </button>
